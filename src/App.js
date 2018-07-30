@@ -48,9 +48,11 @@ class App extends Component {
 
         </header>
         <div className="App-intro">
-            <AddProject addProject = {this.handlesAddProject.bind(this)}/>
+
             <h2>My Project List:</h2>
             <Projects projects = {this.state.projects} />
+            <hr />
+            <AddProject addProject = {this.handlesAddProject.bind(this)}/>
         </div>
       </div>
     );

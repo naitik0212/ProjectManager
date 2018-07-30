@@ -53,11 +53,11 @@ class AddProject extends Component {
                         <select ref = "category">
                         {categoryOptions}
                         </select>
-                        <hr />
+
                     </div>
 
                     <input type = "submit" value= "Submit" />
-
+                    <hr />
                 </form>
 
 
