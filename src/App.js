@@ -3,6 +3,8 @@ import './App.css';
 import Projects from './Components/Projects'
 import AddProject from './Components/AddProject'
 import uuid from 'uuid';
+import $ from 'jquery';
+import Todos from './Components/Todos';
 
 
 class App extends Component {
@@ -12,11 +14,32 @@ class App extends Component {
       this.state = {
           projects: [
 
-          ]
+          ],
+          todos: []
       }
   }
 
-  componentWillMount() {
+  getToDos(){
+      $.ajax({
+          url: 'https://jsonplaceholder.typicode.com/todos',
+          dataType: 'json',
+          cache: false,
+          success: function (data) {
+              this.setState({todos: data}, function () {
+                  console.log(this.state);
+              })
+              
+
+          }.bind(this),
+          error: function (xhr, status, err) {
+              console.log(err);
+          }
+      })
+
+
+  }
+
+  getProjects(){
       this.setState({
           projects: [
               {
@@ -35,6 +58,15 @@ class App extends Component {
                   category: 'Cloud - AWS'
               }]
       });
+  }
+
+  componentWillMount() {
+      this.getProjects();
+      this.getToDos();
+  }
+
+  componentDidMount() {
+      this.getToDos();
   }
 
     handlesAddProject(project) {
@@ -67,6 +99,10 @@ class App extends Component {
             <Projects projects = {this.state.projects} onDelete = {this.handleDeleteProject.bind(this)}/>
             <hr />
             <AddProject addProject = {this.handlesAddProject.bind(this)}/>
+
+            <hr />
+            <Todos todos = {this.state.todos} />
+
         </div>
       </div>
     );

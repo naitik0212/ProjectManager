@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import uuid from 'uuid'
+import Projects from "./Projects";
 
 
 
@@ -70,5 +71,6 @@ class AddProject extends Component {
         );
     }
 }
+
 
 export default AddProject;
